@@ -1,0 +1,57 @@
+<div class="container">
+  <h3>Editing Order No <%= @order.id %></h3>
+  <hr />
+  <% if @order.errors.any? %>
+    <div class="alert alert-danger">
+       <h2>
+          <%= pluralize(@user.errors.count, "error")%>
+              prohibited this user from being saved:  
+          </h2>
+          <ul>
+            <%= @order.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>   
+    </div>
+  <% end %>
+
+  <%= form_for @order do |f| %>
+    <div class="row">
+      <div class="col-xs-12 form-group">
+        <%= f.label :subtotal, class: "control-label" %>
+        <%= f.number_field :subtotal, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 form-group">
+        <%= f.label :tax %>
+        <%= f.number_field :tax, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 form-group">
+        <%= f.label :shipping %>
+        <%= f.number_field :shipping, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 form-group">
+        <%= f.label :total %>
+        <%= f.number_field :total, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 form-group">
+        <%= f.label :status %>
+        <%= f.select :status, options_for_select(@statuses.collect { |s| [s[0].humanize, s[0]] }, selected: @order.status), {} , class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 form-group">
+        <%= f.submit "Save", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

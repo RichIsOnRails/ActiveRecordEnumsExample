@@ -1,0 +1,3 @@
+== RichOnRails Active Record Enums Example App
+
+See http://richonrails.com/articles/active-record-enums-in-ruby-on-rails-4-1 for details.

@@ -1,0 +1,25 @@
+<div class="container">
+  <h3>Orders</h3>
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>Order No</th>
+      <th>Subtotal</th>
+      <th>Tax</th>
+      <th>Shipping</th>
+      <th>Total</th>
+      <th>Order Status</th>
+      <td>&nbsp;</td>
+    </tr>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= number_to_currency order.subtotal %></td>
+        <td><%= number_to_currency order.tax %></td>
+        <td><%= number_to_currency order.shipping %></td>
+        <td><%= number_to_currency order.total %></td>
+        <td><%= order.status.humanize %></td>
+        <td><%= link_to "Edit", edit_order_path(order), class: "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
